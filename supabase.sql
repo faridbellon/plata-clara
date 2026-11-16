@@ -13,3 +13,5 @@ create policy "solo mis datos" on public.docs
   for all to authenticated
   using ((select auth.uid()) = user_id)
   with check ((select auth.uid()) = user_id);
+-- Permiso para que tu usuario con sesión iniciada use la tabla (la política de arriba limita cada fila a su dueño).
+grant select, insert, update, delete on public.docs to authenticated;
